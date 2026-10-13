@@ -55,6 +55,7 @@ class RULPredictor:
         return float(np.clip(pred, 0, self.rul_max))
 
 
+
 def statut_maintenance(rul: float) -> str:
     """Code couleur de maintenance : rouge (<= 30 cycles), orange (<= 60), sinon vert."""
     if rul <= 30:
