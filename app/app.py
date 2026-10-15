@@ -15,7 +15,7 @@ import streamlit as st
 from src.predict import RULPredictor, statut_maintenance
 from src.preprocessing import charger
 
-st.set_page_config(page_title='Maintenance prédictive – RUL', page_icon='✈️', layout='wide')
+st.set_page_config(page_title='Maintenance prédictive – RUL', page_icon=' ', layout='wide')
 
 
 @st.cache_resource
@@ -49,9 +49,9 @@ except Exception as e:
 
 COULEURS = {'vert': ('✅', 'success', "Moteur en bon état"),
             'orange': ('⚠️', 'warning', 'Planifier une maintenance prochainement'),
-            'rouge': ('🚨', 'error', 'Maintenance urgente')}
+            'rouge': ('', 'error', 'Maintenance urgente')}
 
-st.title('✈️ Maintenance prédictive – durée de vie restante (RUL)')
+st.title(' Maintenance prédictive – durée de vie restante (RUL)')
 st.caption("Un LSTM estime combien de cycles de vol il reste à un moteur turbofan avant la panne "
            "(données simulées NASA C-MAPSS, jeu FD001).")
 
@@ -85,7 +85,7 @@ if rul_pred > rul_vraie:
     st.caption('⚠️ Le modèle surestime la RUL ici : c\'est le cas le plus dangereux, pénalisé par le S-score.')
 
 # ---------- Graphiques ----------
-onglet1, onglet2 = st.tabs(['📈 Capteurs', '🎯 Évolution de la RUL'])
+onglet1, onglet2 = st.tabs(['📈 Capteurs', ' Évolution de la RUL'])
 
 with onglet1:
     if not capteurs_choisis:
@@ -118,7 +118,7 @@ with onglet2:
     st.caption('Plus la courbe orange suit la noire, mieux c\'est. Elle devient fiable surtout en fin de vie, '
                'quand la dégradation est visible. Ligne pointillée rouge : seuil critique (30 cycles).')
 
-with st.expander('ℹ️ Comment ça marche ?'):
+with st.expander(' Comment ça marche ?'):
     st.markdown(f"""
 - Les relevés des capteurs sont **lissés**, **normalisés**, puis les **{modele.window} derniers cycles** sont donnés à un réseau **LSTM**.
 - La RUL est **plafonnée à {modele.rul_max}** : un moteur neuf ne montre aucune dégradation visible.
